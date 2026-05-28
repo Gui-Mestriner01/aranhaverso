@@ -87,6 +87,24 @@
         </div>
     </div>
 
+    <div id="modal-confronto" class="hidden fixed inset-0 bg-black/90 z-[100] flex justify-center items-center backdrop-blur-sm">
+        <div class="bg-[#202020] border-2 border-orange-500 p-8 w-full max-w-lg relative transform transition-all">
+            <button onclick="fecharModalConfronto()" class="absolute top-4 right-6 text-gray-500 hover:text-white font-bebas text-3xl transition">X</button>
+            <h3 class="font-bebas text-4xl text-white tracking-widest mb-2">NOVO CONFRONTO</h3>
+            <form id="form-novo-confronto" class="flex flex-col gap-4">
+                <input type="text" id="cad-conf-titulo" placeholder="TÍTULO DO EVENTO (Ex: A Batalha da Ponte)" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <div class="flex gap-4">
+                    <input type="text" id="cad-conf-heroi" placeholder="VARIANTE" class="p-3 w-1/2 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                    <input type="text" id="cad-conf-vilao" placeholder="VILÃO" class="p-3 w-1/2 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                </div>
+                <input type="text" id="cad-conf-vencedor" placeholder="VENCEDOR" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none font-bold text-orange-500" required>
+                <input type="url" id="cad-conf-imagem" placeholder="URL DA IMAGEM DO COMBATE" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <textarea id="cad-conf-descricao" placeholder="RELATÓRIO DA BATALHA..." class="p-3 bg-[#151515] text-white border border-[#393939] outline-none h-24" required></textarea>
+                <button type="submit" class="bg-orange-600 text-white font-bebas text-2xl py-3 mt-2 skew-x-[-5deg] hover:bg-orange-700 transition"><span class="block skew-x-[5deg]">SALVAR ARQUIVO</span></button>
+            </form>
+        </div>
+    </div>
+    
     <script src="{% static 'js/script.js' %}?v=2"></script>
 </body>
 </html>
