@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="bg-[#111] py-20 min-h-screen">
+    <div class="max-w-7xl mx-auto px-8">
+        
+        <div class="border-b border-[#333] pb-8 mb-12 flex justify-between items-center">
+            <h2 class="font-bebas text-6xl text-white tracking-widest uppercase">Tecnologia em Fibras</h2>
+            <button onclick="abrirModalUniforme()" class="bg-[#e62429] text-white font-bebas px-8 py-3 hover:bg-red-700 transition skew-x-[-10deg]">
+                <span class="block skew-x-[10deg]">+ NOVO UNIFORME</span>
+            </button>
+        </div>
+
+        <div id="lista-uniformes" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            </div>
+    </div>
+</section>
+{% endblock %}

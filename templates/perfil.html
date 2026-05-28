@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="relative h-screen bg-[#111] overflow-hidden flex items-center">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#151515] to-[#222]"></div>
+
+    <div class="relative z-20 w-full max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center h-full pt-16">
+        
+        <div class="md:w-1/2 relative z-30">
+            <h3 id="perfil-subtitulo" class="font-bold text-sm text-gray-400 tracking-widest uppercase mb-4">CARREGANDO ARQUIVOS...</h3>
+            <h1 id="perfil-titulo" class="font-bebas text-6xl md:text-8xl text-white tracking-wider mb-6">...</h1>
+            
+            <div id="container-conteudo" class="text-xl text-gray-300 leading-relaxed max-w-xl min-h-[150px]">
+                ...
+            </div>
+        </div>
+
+        <div class="md:w-1/2 relative h-full flex justify-center items-end z-20">
+            <img id="perfil-imagem" src="" alt="Perfil Personagem" class="max-h-[90%] object-contain drop-shadow-2xl origin-bottom transition-all duration-700">
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 w-full h-32 bg-white transform skew-y-[-2deg] origin-bottom-right scale-110 z-10"></div>
+
+    <div class="absolute bottom-0 left-0 w-full z-30 pointer-events-none">
+        <div class="max-w-7xl mx-auto px-8 pointer-events-auto">
+            <div class="flex bg-[#1a1a1a] w-fit text-xs font-bold tracking-widest text-gray-500 uppercase">
+                <button id="btn-overview" onclick="trocarAba('overview')" class="px-8 py-5 transition border-t-4 border-transparent hover:text-white">VISÃO GERAL</button>
+                <button id="btn-bio" onclick="trocarAba('bio')" class="px-8 py-5 transition border-t-4 border-transparent hover:text-white">BIOGRAFIA</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

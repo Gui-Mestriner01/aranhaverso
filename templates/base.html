@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel - Aranhaverso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-black text-white font-roboto overflow-x-hidden">
+
+    <header class="bg-[#202020] relative z-50">
+        <div class="flex justify-center items-center py-4 border-b border-[#393939]">
+            <a href="{% url 'home' %}"><h1 class="text-white bg-[#e62429] px-3 font-bebas text-5xl tracking-wider pt-1">ARANHAVERSO</h1></a>
+        </div>
+
+        <nav class="max-w-7xl mx-auto flex justify-center text-white font-roboto text-sm font-bold tracking-widest uppercase">
+            <div class="flex space-x-10">
+                <a href="{% url 'home' %}" class="py-4 hover:text-gray-400 transition">VARIANTES</a>
+                <a href="{% url 'uniformes' %}" class="py-4 hover:text-gray-400 transition">UNIFORMES</a>
+
+                <div class="relative group">
+                    <a href="{% url 'viloes' %}" class="py-4 block hover:text-gray-400 transition cursor-pointer">VILÕES</a>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 mt-0 w-[1000px] bg-white text-black opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-2xl border-t-4 border-[#e62429] p-8 z-50">
+                        <div class="flex justify-between items-end mb-6">
+                            <h3 class="font-bebas text-4xl uppercase tracking-wider">AMEAÇAS EM DESTAQUE</h3>
+                            <a href="{% url 'viloes' %}" class="text-sm font-bold tracking-widest hover:text-[#e62429] transition">VER TODOS OS VILÕES ></a>
+                        </div>
+                        <div id="mega-menu-viloes" class="grid grid-cols-5 gap-4"></div>
+                    </div>
+                </div>
+
+                <a href="{% url 'poderes' %}" class="py-4 hover:text-gray-400 transition">PODERES</a>
+                <a href="{% url 'confrontos' %}" class="py-4 hover:text-gray-400 transition">CONFRONTOS</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="min-h-screen">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <div id="modal-cadastro" class="hidden fixed inset-0 bg-black/90 z-[100] flex justify-center items-center backdrop-blur-sm">
+        <div class="bg-[#202020] border-2 border-[#e62429] p-8 w-full max-w-lg relative transform transition-all">
+            <button onclick="fecharModal()" class="absolute top-4 right-6 text-gray-500 hover:text-white font-bebas text-3xl transition">X</button>
+            <h3 class="font-bebas text-4xl text-white tracking-widest mb-2">ADICIONAR AO ARQUIVO</h3>
+            <form id="form-nova-variante" class="flex flex-col gap-4">
+                <input type="text" id="cad-nome" placeholder="NOME" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <input type="text" id="cad-universo" placeholder="UNIVERSO" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <input type="url" id="cad-imagem" placeholder="URL DA IMAGEM" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <textarea id="cad-descricao" placeholder="DESCRIÇÃO CURTA..." class="p-3 bg-[#151515] text-white border border-[#393939] outline-none h-20" required></textarea>
+                <textarea id="cad-biografia" placeholder="BIOGRAFIA COMPLETA..." class="p-3 bg-[#151515] text-white border border-[#393939] outline-none h-32" required></textarea>
+                <button type="submit" class="bg-[#e62429] text-white font-bebas text-2xl py-3 mt-2 skew-x-[-5deg]"><span class="block skew-x-[5deg]">SALVAR</span></button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-vilao" class="hidden fixed inset-0 bg-black/90 z-[100] flex justify-center items-center backdrop-blur-sm">
+        <div class="bg-[#202020] border-2 border-green-600 p-8 w-full max-w-lg relative transform transition-all">
+            <button onclick="fecharModalVilao()" class="absolute top-4 right-6 text-gray-500 hover:text-white font-bebas text-3xl transition">X</button>
+            <h3 class="font-bebas text-4xl text-white tracking-widest mb-2">REGISTRAR AMEAÇA</h3>
+            <form id="form-novo-vilao" class="flex flex-col gap-4">
+                <input type="text" id="cad-vilao-nome" placeholder="NOME DO VILÃO" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <input type="text" id="cad-vilao-ameaca" placeholder="NÍVEL DE AMEAÇA" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <input type="url" id="cad-vilao-imagem" placeholder="URL DA IMAGEM" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <textarea id="cad-vilao-tecnologia" placeholder="TECNOLOGIA/PODERES..." class="p-3 bg-[#151515] text-white border border-[#393939] outline-none h-20" required></textarea>
+                <textarea id="cad-vilao-biografia" placeholder="BIOGRAFIA COMPLETA..." class="p-3 bg-[#151515] text-white border border-[#393939] outline-none h-32" required></textarea>
+                <button type="submit" class="bg-green-600 text-white font-bebas text-2xl py-3 mt-2 skew-x-[-5deg]"><span class="block skew-x-[5deg]">SALVAR VILÃO</span></button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-uniforme" class="hidden fixed inset-0 bg-black/90 z-[100] flex justify-center items-center backdrop-blur-sm">
+        <div class="bg-[#202020] border-2 border-red-600 p-8 w-full max-w-lg relative transform transition-all">
+            <button onclick="fecharModalUniforme()" class="absolute top-4 right-6 text-gray-500 hover:text-white font-bebas text-3xl transition">X</button>
+            <h3 class="font-bebas text-4xl text-white tracking-widest mb-2">NOVO UNIFORME</h3>
+            <form id="form-novo-uniforme" class="flex flex-col gap-4">
+                <input type="text" id="cad-uni-nome" placeholder="NOME DO TRAJE" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <input type="text" id="cad-uni-dono" placeholder="VARIANTE QUE USA" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <input type="url" id="cad-uni-imagem" placeholder="URL DA IMAGEM" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <textarea id="cad-uni-descricao" placeholder="DESCRIÇÃO..." class="p-3 bg-[#151515] text-white border border-[#393939] outline-none h-24" required></textarea>
+                <button type="submit" class="bg-red-600 text-white font-bebas text-2xl py-3 mt-2 skew-x-[-5deg]"><span class="block skew-x-[5deg]">SALVAR UNIFORME</span></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}?v=2"></script>
+</body>
+</html>

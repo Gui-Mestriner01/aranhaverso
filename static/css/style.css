@@ -1,0 +1,24 @@
+.font-bebas {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Ocultar barra de rolagem horizontal se o design inclinado passar da tela */
+body {
+    overflow-x: hidden;
+}
+
+/* Efeito Hover nas imagens dos quadrinhos */
+.comic-card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+.comic-card:hover {
+    transform: translateY(-10px);
+}
+.comic-card:hover img {
+    border-bottom-color: #dc2626; /* red-600 */
+}

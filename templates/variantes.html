@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto py-20 px-8">
+    <h1 class="font-bebas text-6xl text-white mb-12 uppercase tracking-wider border-l-8 border-[#e62429] pl-6">
+        Arquivos do Multiverso
+    </h1>
+    
+    <div id="lista-todas-variantes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </div>
+</div>
+
+<script>
+    async function carregarTodasVariantes() {
+        const divLista = document.getElementById('lista-todas-variantes');
+        const res = await fetch('http://127.0.0.1:8000/api/variantes/');
+        const variantes = await res.json();
+        
+        divLista.innerHTML = variantes.map(v => `
+            <div class="bg-[#1a1a1a] p-6 border border-[#333] hover:border-red-600 transition">
+                <img src="${v.imagem}" class="w-full h-64 object-cover mb-4">
+                <h4 class="font-bebas text-2xl text-white uppercase">${v.nome}</h4>
+                <p class="text-[#e62429] text-sm font-bold uppercase mb-4">${v.universo}</p>
+                <a href="/perfil/?id=${v.id}&tipo=variantes" class="block text-center bg-white text-black font-bold py-2 hover:bg-[#e62429] hover:text-white transition">
+                    VER PERFIL COMPLETO
+                </a>
+            </div>
+        `).join('');
+    }
+    carregarTodasVariantes();
+</script>
+{% endblock %}
