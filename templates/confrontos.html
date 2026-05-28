@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="bg-[#111] py-20 min-h-screen">
+    <div class="max-w-7xl mx-auto px-8">
+        
+        <div class="border-b border-[#333] pb-8 mb-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <h2 class="font-bebas text-6xl text-white tracking-widest uppercase">ARQUIVOS DE CONFRONTOS</h2>
+            <button onclick="abrirModalConfronto()" class="bg-[#e62429] text-white font-bebas px-8 py-3 hover:bg-red-700 transition skew-x-[-10deg]">
+                <span class="block skew-x-[10deg]">+ REGISTRAR BATALHA</span>
+            </button>
+        </div>
+
+        <div id="lista-confrontos" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            </div>
+        
+    </div>
+</section>
+{% endblock %}
