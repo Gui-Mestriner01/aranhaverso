@@ -104,6 +104,20 @@
             </form>
         </div>
     </div>
+
+    <div id="modal-poder" class="hidden fixed inset-0 bg-black/90 z-[100] flex justify-center items-center backdrop-blur-sm">
+        <div class="bg-[#202020] border-2 border-purple-500 p-8 w-full max-w-lg relative transform transition-all">
+            <button onclick="fecharModalPoder()" class="absolute top-4 right-6 text-gray-500 hover:text-white font-bebas text-3xl transition">X</button>
+            <h3 class="font-bebas text-4xl text-white tracking-widest mb-2">NOVO PODER</h3>
+            <form id="form-novo-poder" class="flex flex-col gap-4">
+                <input type="text" id="cad-poder-nome" placeholder="NOME DA HABILIDADE (Ex: Bio-Eletricidade)" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <input type="text" id="cad-poder-usuario" placeholder="QUEM USA? (Ex: Miles Morales)" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <input type="url" id="cad-poder-imagem" placeholder="URL DA IMAGEM DEMONSTRATIVA" class="p-3 bg-[#151515] text-white border border-[#393939] outline-none" required>
+                <textarea id="cad-poder-descricao" placeholder="COMO FUNCIONA ESSE PODER?..." class="p-3 bg-[#151515] text-white border border-[#393939] outline-none h-24" required></textarea>
+                <button type="submit" class="bg-purple-600 text-white font-bebas text-2xl py-3 mt-2 skew-x-[-5deg] hover:bg-purple-700 transition"><span class="block skew-x-[5deg]">SALVAR NO ARQUIVO</span></button>
+            </form>
+        </div>
+    </div>
     
     <script src="{% static 'js/script.js' %}?v=2"></script>
 </body>
