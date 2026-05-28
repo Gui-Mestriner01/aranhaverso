@@ -11,6 +11,8 @@ function abrirModalUniforme() { document.getElementById('modal-uniforme').classL
 function fecharModalUniforme() { document.getElementById('modal-uniforme').classList.add('hidden'); document.getElementById('form-novo-uniforme').reset(); }
 function abrirModalConfronto() { document.getElementById('modal-confronto').classList.remove('hidden'); }
 function fecharModalConfronto() { document.getElementById('modal-confronto').classList.add('hidden'); document.getElementById('form-novo-confronto').reset(); }
+function abrirModalPoder() { document.getElementById('modal-poder').classList.remove('hidden'); }
+function fecharModalPoder() { document.getElementById('modal-poder').classList.add('hidden'); document.getElementById('form-novo-poder').reset(); }
 
 // ==========================================
 // FORMULÁRIOS DE CADASTRO
@@ -50,6 +52,19 @@ document.getElementById('form-novo-confronto').addEventListener('submit', async 
     fecharModalConfronto(); 
     carregarPaginaConfrontos();
     carregarConfrontosNaHome(); // Atualiza a home se você estiver nela
+});
+
+document.getElementById('form-novo-poder').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const corpo = {
+        nome: document.getElementById('cad-poder-nome').value,
+        usuario: document.getElementById('cad-poder-usuario').value,
+        imagem: document.getElementById('cad-poder-imagem').value,
+        descricao: document.getElementById('cad-poder-descricao').value
+    };
+    await fetch(`${apiBase}poderes/`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corpo) });
+    fecharModalPoder(); 
+    carregarPaginaPoderes();
 });
 
 // ==========================================
@@ -209,6 +224,35 @@ async function carregarConfrontosNaHome() {
     }
 }
 
+async function carregarPaginaPoderes() {
+    const div = document.getElementById('lista-poderes');
+    if (!div) return;
+
+    try {
+        const res = await fetch(`${apiBase}poderes/`);
+        const data = await res.json();
+        
+        if (data.length > 0) {
+            div.innerHTML = data.reverse().map(p => `
+                <div class="bg-[#151515] border-b-4 border-purple-500 overflow-hidden shadow-xl group hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full">
+                    <div class="h-56 overflow-hidden bg-black flex items-center justify-center p-4">
+                        <img src="${p.imagem}" class="max-h-full object-contain group-hover:scale-110 transition duration-500" alt="${p.nome}">
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <span class="text-purple-500 font-bold text-xs tracking-widest uppercase block mb-1">USUÁRIO: ${p.usuario}</span>
+                        <h4 class="font-bebas text-3xl text-white uppercase mb-3">${p.nome}</h4>
+                        <p class="text-gray-400 text-sm line-clamp-4 leading-relaxed">${p.descricao}</p>
+                    </div>
+                </div>
+            `).join('');
+        } else {
+             div.innerHTML = '<p class="text-gray-500 font-bebas text-2xl col-span-3">NENHUM PODER CATALOGADO.</p>';
+        }
+    } catch (err) {
+        console.error("Erro ao carregar poderes:", err);
+    }
+}
+
 // ==========================================
 // PERFIL DINÂMICO
 // ==========================================
@@ -256,4 +300,5 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarPaginaUniformes();
     carregarPaginaConfrontos();
     carregarConfrontosNaHome();
+    carregarPaginaPoderes();
 });
