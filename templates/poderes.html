@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="bg-[#111] py-20 min-h-screen">
+    <div class="max-w-7xl mx-auto px-8">
+        
+        <div class="border-b border-[#333] pb-8 mb-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h3 class="font-bebas text-2xl text-purple-500 tracking-widest mb-1">ENCICLOPÉDIA DO MULTIVERSO</h3>
+                <h2 class="font-bebas text-6xl text-white tracking-widest uppercase">REGISTRO DE PODERES</h2>
+            </div>
+            <button onclick="abrirModalPoder()" class="bg-purple-600 text-white font-bebas text-xl px-8 py-3 hover:bg-purple-700 transition skew-x-[-10deg]">
+                <span class="block skew-x-[10deg]">+ CATALOGAR PODER</span>
+            </button>
+        </div>
+
+        <div id="lista-poderes" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        </div>
+        
+    </div>
+</section>
+{% endblock %}
